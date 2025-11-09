@@ -1,0 +1,115 @@
+file:///android_asset/love.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Test 💘</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: pop 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 25px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  input {
+    width: 80%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  button {
+    background: #fff;
+    color: #ff4f79;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    background: #ff4f79;
+    color: white;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <h1>💞 Love Test 💞</h1>
+  <div class="card">
+    <input type="text" id="name1" placeholder="Enter your name 💁‍♂️">
+    <input type="text" id="name2" placeholder="Enter crush name 💁‍♀️">
+    <button onclick="loveTest()">Check Love 💘</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function loveTest() {
+      const name1 = document.getElementById("name1").value.trim();
+      const name2 = document.getElementById("name2").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!name1 || !name2) {
+        resultDiv.innerHTML = "Please enter both names 😅";
+        return;
+      }
+
+      let seed = 0;
+      for (let char of (name1 + name2).toLowerCase()) {
+        seed += char.charCodeAt(0);
+      }
+      const lovePercent = 50 + (seed % 51); // 50–100%
+
+      let message = "";
+      if (lovePercent >= 90) message = "💍 Perfect match! Soulmates forever!";
+      else if (lovePercent >= 70) message = "😍 Great chemistry! A beautiful bond!";
+      else if (lovePercent >= 50) message = "🙂 Some spark is there, give it time!";
+      else message = "😅 Maybe better as friends!";
+
+      resultDiv.innerHTML = `<p>❤️ ${name1} + ${name2} = <b>${lovePercent}%</b></p><p>${message}</p>`;
+    }
+  </script>
+</body>
+</html>
